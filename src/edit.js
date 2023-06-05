@@ -14,9 +14,9 @@ import classnames from 'classnames';
 const template = [
 	[ 'hizzle/accordion-child', {} ],
 	[ 'hizzle/accordion-child', {} ],
-	[ 'hizzle/accordion-child', {} ]
+	[ 'hizzle/accordion-child', {} ],
 ];
-const allowedBlocks = ['hizzle/accordion-child'];
+const allowedBlocks = [ 'hizzle/accordion-child' ];
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -26,22 +26,24 @@ const allowedBlocks = ['hizzle/accordion-child'];
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit( {attributes} ) {
-
-	const colorProps   = useColorProps( attributes );
+export default function Edit( { attributes } ) {
+	const colorProps = useColorProps( attributes );
 	const spacingProps = useSpacingProps( attributes );
 
 	// Prepare innner blocks.
 	const props = useInnerBlocksProps(
-		useBlockProps({
+		useBlockProps( {
 			style: { ...colorProps.style, ...spacingProps.style },
-			className: classnames( colorProps.className, spacingProps.className ),
-		}),
+			className: classnames(
+				colorProps.className,
+				spacingProps.className
+			),
+		} ),
 		{
 			allowedBlocks,
 			template,
 		}
 	);
 
-	return <div {...props} />;
+	return <div { ...props } />;
 }

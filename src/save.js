@@ -18,15 +18,14 @@ import classnames from 'classnames';
  *
  * @return {WPElement} Element to render.
  */
-export default function save( {attributes} ) {
-
-	const colorProps   = getColorClassesAndStyles( attributes );
+export default function save( { attributes } ) {
+	const colorProps = getColorClassesAndStyles( attributes );
 	const spacingProps = getSpacingClassesAndStyles( attributes );
 
-	const props = useBlockProps.save({
+	const props = useBlockProps.save( {
 		style: { ...colorProps.style, ...spacingProps.style },
 		className: classnames( colorProps.className, spacingProps.className ),
-	});
+	} );
 
 	return (
 		<div { ...props }>

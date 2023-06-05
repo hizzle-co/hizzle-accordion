@@ -7,12 +7,7 @@
 	"category": "design",
 	"icon": "editor-expand",
 	"description": "Adds an accordion block.",
-	"keywords": [
-		"accordion",
-		"collapse",
-		"expand",
-		"faq"
-	],
+	"keywords": [ "accordion", "collapse", "expand", "faq" ],
 	"supports": {
 		"anchor": true,
 		"align": true,

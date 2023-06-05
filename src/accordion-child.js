@@ -7,7 +7,6 @@ import {
 	InnerBlocks,
 	__experimentalUseColorProps as useColorProps,
 	__experimentalGetSpacingClassesAndStyles as useSpacingProps,
-	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
 	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
 	__experimentalGetSpacingClassesAndStyles as getSpacingClassesAndStyles,
 } from '@wordpress/block-editor';
@@ -27,7 +26,12 @@ import { registerBlockType } from '@wordpress/blocks';
  * @return {string} The slug.
  */
 function headingToSlug( heading ) {
-	return heading ? heading.toLowerCase().replace( /[^a-z0-9]+/g, '-' ).replace( /^-|-$/g, '' ) : '';
+	return heading
+		? heading
+				.toLowerCase()
+				.replace( /[^a-z0-9]+/g, '-' )
+				.replace( /^-|-$/g, '' )
+		: '';
 }
 
 registerBlockType( 'hizzle/accordion-child', {
@@ -36,7 +40,7 @@ registerBlockType( 'hizzle/accordion-child', {
 	description: __( 'A child of the accordion.', 'hizzle-accordion' ),
 	icon: 'button',
 	category: 'design',
-	parent: [ "hizzle/accordion" ],
+	parent: [ 'hizzle/accordion' ],
 	attributes: {
 		heading: {
 			type: 'string',
@@ -54,8 +58,8 @@ registerBlockType( 'hizzle/accordion-child', {
 			gradients: true,
 			__experimentalDefaultControls: {
 				background: true,
-				text: true
-			}
+				text: true,
+			},
 		},
 		typography: {
 			fontSize: true,
@@ -67,47 +71,68 @@ registerBlockType( 'hizzle/accordion-child', {
 			__experimentalTextDecoration: true,
 			__experimentalLetterSpacing: true,
 			__experimentalDefaultControls: {
-				fontSize: true
-			}
+				fontSize: true,
+			},
 		},
 		reusable: false,
 		spacing: {
 			__experimentalSkipSerialization: true,
 			padding: [ 'horizontal', 'vertical' ],
 			__experimentalDefaultControls: {
-				padding: true
-			}
+				padding: true,
+			},
 		},
 	},
 	edit: ( { attributes, setAttributes, isSelected, clientId } ) => {
 		const { heading, badge } = attributes;
 
-		const colorProps   = useColorProps( attributes );
+		const colorProps = useColorProps( attributes );
 		const spacingProps = useSpacingProps( attributes );
-		const blockProps   = useBlockProps({
+		const blockProps = useBlockProps( {
 			style: { ...colorProps.style },
 			className: colorProps.className,
-		});
+		} );
 
 		const contentProps = {
-			className: classnames( 'hizzle-accordion__panel-content', spacingProps.className ),
-			id: `${headingToSlug( heading )}__content`,
-		}
+			className: classnames(
+				'hizzle-accordion__panel-content',
+				spacingProps.className
+			),
+			id: `${ headingToSlug( heading ) }__content`,
+		};
 
-		const is_inner_block_selected = useSelect(
-			( select ) => select( 'core/block-editor' ).hasSelectedInnerBlock( clientId, true )
+		const is_inner_block_selected = useSelect( ( select ) =>
+			select( 'core/block-editor' ).hasSelectedInnerBlock(
+				clientId,
+				true
+			)
 		);
 
 		return (
 			<div { ...blockProps }>
-				<h4 className="hizzle-accordion__heading" aria-expanded={ isSelected || is_inner_block_selected } aria-controls={ `${headingToSlug( heading)}__content` }>
-					<div className={classnames( 'hizzle-accordion__heading-button', spacingProps.className )} style={ spacingProps.style } type="button">
-
+				<h4
+					className="hizzle-accordion__heading"
+					aria-expanded={ isSelected || is_inner_block_selected }
+					aria-controls={ `${ headingToSlug( heading ) }__content` }
+				>
+					<div
+						className={ classnames(
+							'hizzle-accordion__heading-button',
+							spacingProps.className
+						) }
+						style={ spacingProps.style }
+						type="button"
+					>
 						<RichText
 							aria-label={ __( 'Heading', 'hizzle-accordion' ) }
-							placeholder={ __( 'Add heading…', 'hizzle-accordion' ) }
+							placeholder={ __(
+								'Add heading…',
+								'hizzle-accordion'
+							) }
 							value={ heading }
-							onChange={ ( value ) => setAttributes( { heading: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { heading: value } )
+							}
 							identifier="heading"
 							tagName="span"
 							className="hizzle-accordion__heading-title"
@@ -115,9 +140,14 @@ registerBlockType( 'hizzle/accordion-child', {
 
 						<RichText
 							aria-label={ __( 'Badge', 'hizzle-accordion' ) }
-							placeholder={ __( 'Add badge…', 'hizzle-accordion' ) }
+							placeholder={ __(
+								'Add badge…',
+								'hizzle-accordion'
+							) }
 							value={ badge }
-							onChange={ ( value ) => setAttributes( { badge: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { badge: value } )
+							}
 							identifier="badge"
 							tagName="code"
 							withoutInteractiveFormatting
@@ -129,8 +159,10 @@ registerBlockType( 'hizzle/accordion-child', {
 				</h4>
 
 				<div className="hizzle-accordion__panel">
-					<div {...contentProps}>
-						<InnerBlocks template={ [ [ 'core/paragraph', {} ] ] }/>
+					<div { ...contentProps }>
+						<InnerBlocks
+							template={ [ [ 'core/paragraph', {} ] ] }
+						/>
 					</div>
 				</div>
 			</div>
@@ -139,25 +171,37 @@ registerBlockType( 'hizzle/accordion-child', {
 	save: ( { attributes } ) => {
 		const { heading, badge } = attributes;
 
-		const borderProps  = getBorderClassesAndStyles( attributes );
-		const colorProps   = getColorClassesAndStyles( attributes );
+		const colorProps = getColorClassesAndStyles( attributes );
 		const spacingProps = getSpacingClassesAndStyles( attributes );
-		const blockProps   = useBlockProps.save({
+		const blockProps = useBlockProps.save( {
 			style: { ...colorProps.style },
 			className: colorProps.className,
-		});
+		} );
 
 		const contentProps = {
-			className: classnames( 'hizzle-accordion__panel-content', spacingProps.className ),
+			className: classnames(
+				'hizzle-accordion__panel-content',
+				spacingProps.className
+			),
 			style: spacingProps.style,
-			id: `${headingToSlug( heading )}__content`,
-		}
+			id: `${ headingToSlug( heading ) }__content`,
+		};
 
 		return (
 			<div { ...blockProps }>
-				<h4 className="hizzle-accordion__heading" aria-expanded="false" aria-controls={ `${headingToSlug( heading)}__content` }>
-					<button style={spacingProps.style} className={classnames( 'hizzle-accordion__heading-button', spacingProps.className )} type="button">
-
+				<h4
+					className="hizzle-accordion__heading"
+					aria-expanded="false"
+					aria-controls={ `${ headingToSlug( heading ) }__content` }
+				>
+					<button
+						style={ spacingProps.style }
+						className={ classnames(
+							'hizzle-accordion__heading-button',
+							spacingProps.className
+						) }
+						type="button"
+					>
 						<RichText.Content
 							tagName="span"
 							className="hizzle-accordion__heading-title"
@@ -177,11 +221,11 @@ registerBlockType( 'hizzle/accordion-child', {
 				</h4>
 
 				<div className="hizzle-accordion__panel">
-					<div {...contentProps}>
+					<div { ...contentProps }>
 						<InnerBlocks.Content />
 					</div>
 				</div>
 			</div>
 		);
-	}
+	},
 } );
