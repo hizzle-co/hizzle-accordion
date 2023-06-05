@@ -1,0 +1,94 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+.wp-block-hizzle-accordion {
+  border: 1px solid #c3c4c7;
+}
+
+.hizzle-accordion__heading {
+  margin: 0;
+  border-top: 1px solid #c3c4c7;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 600;
+  color: inherit;
+}
+.wp-block-hizzle-accordion-child:first-child > .hizzle-accordion__heading {
+  border-top: none;
+}
+.hizzle-accordion__heading .hizzle-accordion__heading-button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-weight: 400;
+  font-size: inherit;
+  margin: 0;
+  padding: 1em 3.5em 1em 1.5em;
+  min-height: 46px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
+}
+.hizzle-accordion__heading .hizzle-accordion__heading-button:active, .hizzle-accordion__heading .hizzle-accordion__heading-button:hover, .hizzle-accordion__heading .hizzle-accordion__heading-button:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: inherit;
+  border: 0;
+  box-shadow: none;
+}
+.hizzle-accordion__heading .hizzle-accordion__heading-button:focus {
+  outline-offset: -1px;
+  outline: 2px solid #2271b1;
+}
+
+.hizzle-accordion__heading-title {
+  pointer-events: none;
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.hizzle-accordion__heading-icon {
+  border: solid #2c3338;
+  border-width: 0 3px 3px 0;
+  height: 0.5rem;
+  pointer-events: none;
+  position: absolute;
+  right: 1.5em;
+  top: 50%;
+  transform: translateY(-70%) rotate(45deg);
+  width: 0.5rem;
+}
+.hizzle-accordion__heading[aria-expanded=true] .hizzle-accordion__heading-icon {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+.hizzle-accordion__panel {
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+}
+.wp-block-hizzle-accordion-child.block-editor-block-list__block .hizzle-accordion__panel {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hizzle-accordion__panel {
+    transition: none;
+  }
+}
+.hizzle-accordion__heading[aria-expanded=true] + .hizzle-accordion__panel {
+  max-height: var(--hizzle-accordion-panel-max-height, 1000px);
+}
+
+.hizzle-accordion__panel-content {
+  padding: 1em 1.5em;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
