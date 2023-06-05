@@ -5,7 +5,6 @@ import {
 	RichText,
 	useBlockProps,
 	InnerBlocks,
-	__experimentalUseBorderProps as useBorderProps,
 	__experimentalUseColorProps as useColorProps,
 	__experimentalGetSpacingClassesAndStyles as useSpacingProps,
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
@@ -79,22 +78,10 @@ registerBlockType( 'hizzle/accordion-child', {
 				padding: true
 			}
 		},
-		__experimentalBorder: {
-			color: true,
-			radius: true,
-			style: true,
-			__experimentalSkipSerialization: true,
-			__experimentalDefaultControls: {
-				color: true,
-				radius: true,
-				style: true
-			}
-		},
 	},
 	edit: ( { attributes, setAttributes, isSelected, clientId } ) => {
 		const { heading, badge } = attributes;
 
-		const borderProps  = useBorderProps( attributes );
 		const colorProps   = useColorProps( attributes );
 		const spacingProps = useSpacingProps( attributes );
 		const blockProps   = useBlockProps({
@@ -113,7 +100,7 @@ registerBlockType( 'hizzle/accordion-child', {
 
 		return (
 			<div { ...blockProps }>
-				<h4 className={classnames( 'hizzle-accordion__heading', borderProps.className )} style={borderProps.style} aria-expanded={ isSelected || is_inner_block_selected } aria-controls={ `${headingToSlug( heading)}__content` }>
+				<h4 className="hizzle-accordion__heading" aria-expanded={ isSelected || is_inner_block_selected } aria-controls={ `${headingToSlug( heading)}__content` }>
 					<div className={classnames( 'hizzle-accordion__heading-button', spacingProps.className )} style={ spacingProps.style } type="button">
 
 						<RichText
@@ -168,7 +155,7 @@ registerBlockType( 'hizzle/accordion-child', {
 
 		return (
 			<div { ...blockProps }>
-				<h4 className={classnames( 'hizzle-accordion__heading', borderProps.className )} style={borderProps.style} aria-expanded="false" aria-controls={ `${headingToSlug( heading)}__content` }>
+				<h4 className="hizzle-accordion__heading" aria-expanded="false" aria-controls={ `${headingToSlug( heading)}__content` }>
 					<button style={spacingProps.style} className={classnames( 'hizzle-accordion__heading-button', spacingProps.className )} type="button">
 
 						<RichText.Content

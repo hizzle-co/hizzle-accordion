@@ -4,7 +4,6 @@
 import {
 	useBlockProps,
 	useInnerBlocksProps,
-	__experimentalUseBorderProps as useBorderProps,
 	__experimentalUseColorProps as useColorProps,
 	__experimentalGetSpacingClassesAndStyles as useSpacingProps,
 } from '@wordpress/block-editor';
@@ -29,15 +28,14 @@ const allowedBlocks = ['hizzle/accordion-child'];
  */
 export default function Edit( {attributes} ) {
 
-	const borderProps  = useBorderProps( attributes );
 	const colorProps   = useColorProps( attributes );
 	const spacingProps = useSpacingProps( attributes );
 
 	// Prepare innner blocks.
 	const props = useInnerBlocksProps(
 		useBlockProps({
-			style: { ...colorProps.style, ...borderProps.style, ...spacingProps.style },
-			className: classnames( colorProps.className, borderProps.className, spacingProps.className ),
+			style: { ...colorProps.style, ...spacingProps.style },
+			className: classnames( colorProps.className, spacingProps.className ),
 		}),
 		{
 			allowedBlocks,

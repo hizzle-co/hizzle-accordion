@@ -20,16 +20,17 @@
 		color: inherit;
 		cursor: pointer;
 		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
 		font-weight: 400;
 		font-size: inherit;
 		margin: 0;
-		padding: 1em 3.5em 1em 1.5em;
+		padding: 1em 1.5em;
 		min-height: 46px;
 		position: relative;
 		text-align: left;
 		width: 100%;
 		align-items: center;
-		justify-content: space-between;
 		user-select: auto;
 
 		&:active,
@@ -55,18 +56,15 @@
 }
 
 .hizzle-accordion__heading-icon {
-	border: solid #2c3338;
+	border: solid currentColor;
     border-width: 0 3px 3px 0;
-    height: 0.5rem;
+    height: 1rem;
     pointer-events: none;
-    position: absolute;
-    right: 1.5em;
-    top: 50%;
-    transform: translateY(-70%) rotate(45deg);
-    width: 0.5rem;
+    transform: translateY(-30%) rotate(45deg);
+    width: 1rem;
 
 	.hizzle-accordion__heading[aria-expanded=true] & {
-		transform: translateY(-30%) rotate(-135deg);
+		transform: rotate(-135deg);
 	}
 }
 

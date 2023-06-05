@@ -4,7 +4,6 @@
 import {
 	useBlockProps,
 	InnerBlocks,
-	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
 	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
 	__experimentalGetSpacingClassesAndStyles as getSpacingClassesAndStyles,
 } from '@wordpress/block-editor';
@@ -21,13 +20,12 @@ import classnames from 'classnames';
  */
 export default function save( {attributes} ) {
 
-	const borderProps  = getBorderClassesAndStyles( attributes );
 	const colorProps   = getColorClassesAndStyles( attributes );
 	const spacingProps = getSpacingClassesAndStyles( attributes );
 
 	const props = useBlockProps.save({
-		style: { ...colorProps.style, ...borderProps.style, ...spacingProps.style },
-		className: classnames( colorProps.className, borderProps.className, spacingProps.className ),
+		style: { ...colorProps.style, ...spacingProps.style },
+		className: classnames( colorProps.className, spacingProps.className ),
 	});
 
 	return (
