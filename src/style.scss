@@ -36,7 +36,7 @@
 		&:active,
 		&:hover,
 		&:focus {
-			background-color: rgba( 0, 0, 0, 0.05 );
+			background-color: rgba(0, 0, 0, 0.05);
 			color: inherit;
 			border: 0;
 			box-shadow: none;
@@ -51,19 +51,19 @@
 
 .hizzle-accordion__heading-title {
 	pointer-events: none;
-    font-weight: 600;
-    flex-grow: 1;
+	font-weight: 600;
+	flex-grow: 1;
 }
 
 .hizzle-accordion__heading-icon {
-	border: solid currentColor;
-    border-width: 0 3px 3px 0;
-    height: 1rem;
-    pointer-events: none;
-    transform: translateY(-30%) rotate(45deg);
-    width: 1rem;
+	border: solid currentcolor;
+	border-width: 0 3px 3px 0;
+	height: 1rem;
+	pointer-events: none;
+	transform: translateY(-30%) rotate(45deg);
+	width: 1rem;
 
-	.hizzle-accordion__heading[aria-expanded=true] & {
+	.hizzle-accordion__heading[aria-expanded="true"] & {
 		transform: rotate(-135deg);
 	}
 }
@@ -83,7 +83,7 @@
 		transition: none;
 	}
 
-	.hizzle-accordion__heading[aria-expanded=true] + & {
+	.hizzle-accordion__heading[aria-expanded="true"] + & {
 		max-height: var(--hizzle-accordion-panel-max-height, 1000px);
 	}
 }
