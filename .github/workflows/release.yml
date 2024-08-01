@@ -1,0 +1,75 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set git user
+        run: |
+          git config --global user.email "picocodes@gmail.com"
+          git config --global user.name "picocodes"
+
+      - name: Increment version
+        id: npm_bump
+        run: |
+          version=$(npm version patch -m "Increment version [skip ci]")
+          echo "new_version=$version" >> $GITHUB_ENV
+
+      - name: Update block.json
+        run: |
+          node -e "const fs = require('fs');
+          const path = './src/block.json';
+          const block = require(path);
+          block.version = '${{ env.new_version }}';
+          fs.writeFileSync(path, JSON.stringify(block, null, 4));"
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_user_name: "picocodes"
+          commit_user_email: "picocodes@gmail.com"
+          commit_message: "Build and increment version [skip ci]"
+          commit_options: '--no-verify --allow-empty'
+          push_options: '--force'
+
+      - name: Create ZIP
+        run: npm run plugin-zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        id: release
+        with:
+          tag_name: ${{ env.new_version }}
+          draft: false
+          prerelease: false
+          make_latest: true
+          name: Release ${{ env.new_version }}
+          files: ./${{ github.event.repository.name }}.zip
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
