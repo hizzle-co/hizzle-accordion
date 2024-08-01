@@ -1,43 +1,48 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
-	"name": "hizzle/accordion",
-	"version": "1.0.0",
-	"title": "Hizzle Accordion",
-	"category": "design",
-	"icon": "editor-expand",
-	"description": "Adds an accordion block.",
-	"keywords": [ "accordion", "collapse", "expand", "faq" ],
-	"supports": {
-		"anchor": true,
-		"align": true,
-		"alignWide": true,
-		"color": {
-			"gradients": true,
-			"link": true
-		},
-		"dimensions": {
-			"minHeight": true
-		},
-		"spacing": {
-			"margin": true
-		},
-		"typography": {
-			"fontSize": true,
-			"lineHeight": true,
-			"__experimentalFontFamily": true,
-			"__experimentalFontWeight": true,
-			"__experimentalFontStyle": true,
-			"__experimentalTextTransform": true,
-			"__experimentalTextDecoration": true,
-			"__experimentalLetterSpacing": true,
-			"__experimentalDefaultControls": {
-				"fontSize": true
-			}
-		}
-	},
-	"textdomain": "hizzle-accordion",
-	"editorScript": "file:./index.js",
-	"script": "file:./view.js",
-	"style": "file:./style-index.css"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "hizzle/accordion",
+    "version": "v1.0.1",
+    "title": "Hizzle Accordion",
+    "category": "design",
+    "icon": "editor-expand",
+    "description": "Adds an accordion block.",
+    "keywords": [
+        "accordion",
+        "collapse",
+        "expand",
+        "faq"
+    ],
+    "supports": {
+        "anchor": true,
+        "align": true,
+        "alignWide": true,
+        "color": {
+            "gradients": true,
+            "link": true
+        },
+        "dimensions": {
+            "minHeight": true
+        },
+        "spacing": {
+            "margin": true
+        },
+        "typography": {
+            "fontSize": true,
+            "lineHeight": true,
+            "__experimentalFontFamily": true,
+            "__experimentalFontWeight": true,
+            "__experimentalFontStyle": true,
+            "__experimentalTextTransform": true,
+            "__experimentalTextDecoration": true,
+            "__experimentalLetterSpacing": true,
+            "__experimentalDefaultControls": {
+                "fontSize": true
+            }
+        }
+    },
+    "textdomain": "hizzle-accordion",
+    "editorScript": "file:./index.js",
+    "script": "file:./view.js",
+    "style": "file:./style-index.css"
 }
