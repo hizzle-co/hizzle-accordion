@@ -60,7 +60,7 @@ jobs:
         run: npm run plugin-zip
 
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         id: release
         with:
           tag_name: ${{ env.new_version }}
